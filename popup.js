@@ -26,7 +26,6 @@ $(function () {
             <th>שם לקוח/ספק</th>
             <th>מס׳ טלפון</th>
             <th>כתובת</th>
-            <th>בחר</th>
             <th>מחק</th>
         </tr>`)
 
@@ -35,7 +34,7 @@ $(function () {
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     table.push(doc.data())
-                    $('#results').append(`<tr data-index="${i}"><td>${doc.data().customer_name}</td><td>${doc.data().phone}</td><td>${doc.data().address}</td><td><button class="insertDataBtn"><i class="fa fa-check-circle"></i></button></td><td><button class="deleteContact"><i class="fa fa-trash"></i></button></td></tr>`)
+                    $('#results').append(`<tr data-index="${i}"><td>${doc.data().customer_name}</td><td>${doc.data().phone}</td><td>${doc.data().address}</td><td><button class="deleteContact"><i class="fa fa-trash"></i></button></td></tr>`)
                     i++;
                 });
             })
@@ -52,13 +51,12 @@ $(function () {
             <th>שם לקוח/ספק</th>
             <th>מס׳ טלפון</th>
             <th>כתובת</th>
-            <th>בחר</th>
             <th>מחק</th>
         </tr>`)
         db.collection("contacts").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 table.push(doc.data())
-                $('#results').append(`<tr data-ref="${doc.id}" data-index="${i}"><td>${doc.data().customer_name}</td><td>${doc.data().phone}</td><td>${doc.data().address}</td><td><button class="insertDataBtn"><i class="fa fa-check-circle"></i></button></td><td><button class="deleteContact"><i class="fa fa-trash"></i></button></td></tr>`)
+                $('#results').append(`<tr data-ref="${doc.id}" data-index="${i}"><td>${doc.data().customer_name}</td><td>${doc.data().phone}</td><td>${doc.data().address}</td><td><button class="deleteContact"><i class="fa fa-trash"></i></button></td></tr>`)
                 i++;
             });
             $('#loadAll').remove();

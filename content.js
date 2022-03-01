@@ -35,7 +35,7 @@ chrome.storage.sync.get(["username"], function (items) {
 
 removeHelper();
 function removeHelper() {
-	let target = document.getElementById('beacon-container');
+	let target = document.getElementsByClassName('intercom-lightweight-app')[0];
 	if (!target) {
 		setTimeout(() => {
 			removeHelper();
@@ -83,7 +83,7 @@ chrome.runtime.onMessage.addListener(message => {
 
 $("body").on("click", "#fillData", function (event) {
 	console.log('bruh');
-	let notesArea = $(".flex-grow.ct-input__input.ct-input__input--textarea.ember-text-area.ember-view").eq(0)
+	let notesArea = $("#note-0");
 	let customer_name;
 	let receiver_name;
 	let phone;
@@ -121,26 +121,27 @@ $("body").on("click", "#fillData", function (event) {
 });
 
 setInterval(() => {
-	let notesArea = $(".flex-grow.ct-input__input.ct-input__input--textarea.ember-text-area.ember-view").eq(0)
+	let notesArea = $(".Textareastyled__StyledTextarea-sc-1qpgt10-1.dzIBUT").eq(0);
 	notesArea.css('direction', 'rtl');
 
 	try {
-		pickupdeliveryswitch = document.getElementsByClassName('ct-form-textarea ember-view')[0];
+		pickupdeliveryswitch = document.getElementsByClassName('Textareastyled__StyledTextarea-sc-1qpgt10-1 dzIBUT')[0];
 		if (!$("#myDeliveryPickupSwitch").length) {
-			pickupdeliveryswitch.insertAdjacentHTML('afterend', buttonHtml)
+			pickupdeliveryswitch.parentElement.insertAdjacentHTML('afterend', buttonHtml)
 		}
 		let activeBtn;
 		let inActiveBtn;
 		if (notesArea.val().includes('-משלוח-')) {
-			activeBtn = document.getElementById('deliveryBtn');
-			inActiveBtn = document.getElementById('pickupBtn');
+			activeBtn = $('#deliveryBtn');
+			inActiveBtn = $('#pickupBtn');
 
 		} else if (notesArea.val().includes('-איסוף-')) {
-			activeBtn = document.getElementById('pickupBtn');
-			inActiveBtn = document.getElementById('deliveryBtn');
+			activeBtn = $('#pickupBtn');
+			inActiveBtn = $('#deliveryBtn');
 		}
-		activeBtn.classList.add('md-checked');
-		inActiveBtn.classList.remove('md-checked');
+		// console.log(activeBtn)
+		activeBtn.attr("data-state", "checked");
+		inActiveBtn.attr("data-state", "unchecked");
 	} catch (error) {
 
 	}
@@ -154,45 +155,29 @@ $("body").on("click", ".flex.ct-input__input.ember-text-field.ember-view:eq(3)",
 })
 
 function setButtonHtml() {
-	buttonHtml = `<div id="myDeliveryPickupSwitch" class="ct-input-group layout-row layout-align-center-center ember-view">  <span id="ember108" class="ct-icon ct-input-group__icon flex-none ember-view">
-<!---->  		<svg height="24" width="24px" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
-<path d="M 12 0 L 0 3.2 L 0 17.6 L 12 20.8 L 24 17.6 L 24 3.2 L 12 0 Z M 1.596 16.424 L 1.588 5.6 L 11.2 8.163 L 11.2 18.984 L 1.596 16.424 Z M 1.588 4 L 5.594 2.932 L 16 5.706 L 16 5.71 L 12 6.777 L 1.588 4 Z M 22.404 16.424 L 12.8 18.984 L 12.8 8.163 L 16 7.31 L 16 11.21 L 19.2 10.356 L 19.2 6.457 L 22.412 5.6 L 22.404 16.424 Z M 19.2 4.857 L 19.2 4.854 L 8.794 2.078 L 12 1.223 L 22.412 4 L 19.2 4.857 Z" bx:origin="0 -3.076923" fill="#1874ff"/>
-</svg>
-
-
-
-<!---->
-
-</span>
-<div class="ct-input-group__fields flex-grow layout-align-center layout-row">
-						<div class="ct-radio flex-grow ember-view"><md-radio-button onclick="let target= document.getElementsByClassName('flex-grow ct-input__input ct-input__input--textarea ember-text-area ember-view')[0]; target.value=\`שם לקוח: 
-שם המקבל: 
-טלפון: 
-מס' ההזמנה: 
-קרטונים / שקיות: 
-תיאור הזמנה: 
-הערות: 
+	buttonHtml = `<div id="myDeliveryPickupSwitch" class="DetailInput___StyledDiv-sc-1jxvvs4-1 fTIGPO">
+	<label for="priority-0"><span class="DetailInput___StyledSpan-sc-1jxvvs4-2 dcCjVF">סוג</span></label>
+	<div role="radiogroup" dir="ltr" aria-label="Priority" id="priority-0" class="PriorityField__Group-sc-13okc2a-0 jaWRPG" tabindex="0" style="outline: none;">
+	<button type="button" role="radio" aria-checked="false" data-state="unchecked" class="PriorityField__Item-sc-13okc2a-1 dPLYUY" tabindex="-1" data-radix-collection-item=""
+	id="deliveryBtn"
+	onclick="let target= document.getElementsByClassName('Textareastyled__StyledTextarea-sc-1qpgt10-1 dzIBUT')[0];
+	target.value=\`לקוח / ספק:
+שם המקבל:
+טלפון:
+מס' ההזמנה:
+קרטונים / שקיות:
+תיאור הזמנה:
+הערות:
 סוכן מכירות: ${username}
 
 -משלוח-\`;
-target.style.height='168px';
-this.classList.add('md-checked');
-
-let pickupBtn = document.getElementById('pickupBtn');
-pickupBtn.classList.remove('md-checked');
-" aria-checked="true" role="radio" id="deliveryBtn" class="my-md-default-theme ember-view"><div class="md-container md-ink-ripple">
-	<div class="md-off"></div>
-	<div class="md-on"></div>
-<div class="md-ripple-container"></div></div>
-	<div class="md-label">
-		<span>
-				משלוח
-
-		</span>
-	</div>
-</md-radio-button></div>
-<div class="ct-radio flex-grow ember-view"><md-radio-button onclick="let target= document.getElementsByClassName('flex-grow ct-input__input ct-input__input--textarea ember-text-area ember-view')[0];
-target.value=\`ספק:
+target.style.height='208px';
+"
+>משלוח</button>
+	<button type="button" role="radio" aria-checked="false" data-state="unchecked" class="PriorityField__Item-sc-13okc2a-1 dPLYUY" tabindex="-1" data-radix-collection-item=""
+	id="pickupBtn"
+	onclick="let target= document.getElementsByClassName('Textareastyled__StyledTextarea-sc-1qpgt10-1 dzIBUT')[0];
+target.value=\`ספק / לקוח:
 לאסוף מ:
 טלפון:
 הזמנת טובין מס׳:
@@ -202,24 +187,9 @@ target.value=\`ספק:
 השולח: ${username}
 
 -איסוף-\`;
-this.classList.add('md-checked');
+target.style.height='208px';
+"
+	>איסוף</button>
+	</div></div>`;
 
-target.style.height='168px';
-
-let deliveryBtn = document.getElementById('deliveryBtn');
-deliveryBtn.classList.remove('md-checked');
-" aria-checked="false" role="radio" id="pickupBtn" class="my-md-default-theme ember-view"><div class="md-container md-ink-ripple">
-	<div class="md-off"></div>
-	<div class="md-on"></div>
-<div class="md-ripple-container"></div></div>
-	<div class="md-label">
-		<span>
-				איסוף
-
-		</span>
-	</div>
-</md-radio-button></div>
-
-</div>
-</div>`;
 }
