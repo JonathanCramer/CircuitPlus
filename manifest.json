@@ -1,12 +1,12 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Circuit Plus",
   "description": "Have a contact list, auto-insert data, and much more.",
   "version": "1.0",
   "icons": {
     "128": "circuit-original.png"
   },
-  "browser_action": {
+  "action": {
     "default_icon": "circuit-original.png",
     "default_popup": "popup.html"
   },
@@ -16,7 +16,6 @@
         "*://team.getcircuit.com/*"
       ],
       "js": [
-        "jquery-3.1.0.min.js",
         "content.js"
       ]
     }
@@ -26,6 +25,5 @@
     "notifications",
     "contextMenus"
   ],
-  "options_page": "options.html",
-  "content_security_policy": "script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'"
+  "options_page": "options.html"
 }

@@ -4,9 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Circuit Plus</title>
-    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
-    <script src="jquery-3.1.0.min.js"></script>
     <script src="popup.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.min.css"
         integrity="sha512-TECBPTD5Db97nlsJ/gGBBv9JLXg172YcGtrl/HHM4x9W++PPKEpHs61ogVd4x2omTgST1dIHoy2HeYWZzcZzHw=="
@@ -177,40 +174,6 @@
 
 <body>
     <button id="linkToCircuit">ניהול משלוחים <i class="fa fa-external-link"></i>
-    </button>
-    <div id="searchPart">
-        <label for="search">שם לקוח/ספק</label>
-        <input id="searchBox" type="search" autofocus required />
-        <button id="searchBtn">חפש <i class="fa fa-search"></i></button>
-    </div>
-    <table id="results">
-        <tr>
-            <th>שם לקוח/ספק</th>
-            <th>מס׳ טלפון</th>
-            <th>כתובת</th>
-            <!-- <th>בחר</th> -->
-            <th>מחק</th>
-        </tr>
-    </table>
-    <button id="loadAll">הצג הכל‎ <i class="fa fa-eye"></i></button>
-
-    <div class="container" id="new_contact">
-        <h2>הוסף איש קשר</h2>
-        <label>שם לקוח/ספק* - ישמש לחיפוש בעתיד</label>
-        <input type="text" id="new_customer_name" autocomplete="off">
-        <label>כתובת</label>
-        <input type="text" id="new_address" autocomplete="off">
-        <label>טלפון</label>
-        <input type="text" id="new_phone" autocomplete="off">
-        <label>שם מקבל</label>
-        <input type="text" id="new_receiver_name" autocomplete="off">
-        <label>הערות</label>
-        <input type="text" id="new_note" autocomplete="off">
-        <p class="msg" id="successMsg">איש קשר נוסף בהצלחה</p>
-        <p class="msg" id="errorMsg"></p>
-        <button id="create_new_contact">הוסף לקוח/ספק <i class="fa fa-plus-circle"></i></button>
-    </div>
-    <div id="spacer"></div>
 </body>
 
 </html>
